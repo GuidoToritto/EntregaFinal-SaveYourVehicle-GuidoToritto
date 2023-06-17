@@ -12,49 +12,59 @@
 
 <body>
     <header>
-        <h1>Save your Vehicle</h1>
-        <h2>Seguro de vehiculo online</h2>
-        <p>Estudiante: Guido Toritto</p>
-        <p>Comisión JavaScript 34095 </p>
+        <h1 class="title">Save your Vehicle</h1>
+        <h1>Seguro de vehiculo online</h1>
+
+        <h2>Estudiante: Guido Toritto</h2>
+        <h2>Comisión JavaScript 34095 </h2>
     </header>
+    <br><br>
     <main>
-        <div>
-            <h2>Gracias por utilizar el seguro de vehiculos</h2>
-            <h4>¿Qué tipo de vehiculo querés asegurar?</h4>
-            <ol>
-                <li>Camioneta</li>
-                <li>Camión</li>
-                <li>Auto</li>
-                <li>Moto</li>
-            </ol>
+
+        <h1>Gracias por utilizar el seguro de vehiculos</h1>
+
+        <div class="vehicle">
+            <label for="propiedad">Selecciona el tipo de vehiculo</label>
+            <select id="vehiculoElegir">
+                <option value="1">Elegir vehiculo</option>
+            </select>
         </div>
 
-        <div>
-            <p>¿Qué valor tiene el vehiculo?</p>
-            <input type="text" placeholder="Valor del vehiculo">
+        <div class="type">
+            <label>¿Qué valor tiene el vehiculo? Debes ingresar un valor entre 1.000.000 y 10.000.000 de pesos.</label>
+            <input type="number" id="precioVehiculo" placeholder="Valor del vehiculo">
         </div>
 
-        <div>
-            <p>¿Tiene alarma?</p>
-            <label for="alarmaSi">
-                <input type="radio" name="alarma" id="alarmaSi">
-                Si
-            </label>
-            <label for="alarmaNo">
-                <input type="radio" name="alarma" id="alarmaNo">
-                No
-            </label>
-        </div>
-        <div>
-            <button class="button" id="btn-cotizar">Cotizar</button>
+        <div class="alarm">
+            <label>¿Tiene alarma?</label>
+            <div class="radio-group" id="alarma">
+                <input  type="radio" name="alarma" id="alarmaSi">
+                <label class="alarmBtn" for="alarmaSi">Si</label>
+            </div>
+            <div class="radio-group">
+                <input  type="radio" name="alarma" id="alarmaNo">
+                <label class="alarmBtn" for="alarmaNo">No</label>
+            </div>
         </div>
 
+
+        <button class="button" id="btn-cotizar">Cotizar</button>
+
+        <label class="separado">
+            <p class="importe">Cuota: $
+                <span id="valorFinal">0.00</span>
+                <br><br><br>
+                <span onclick="" class="guardar" title="Guardar en historial">Guardar</span>
+            </p>
+        </label>
     </main>
 
     <footer>
-        <p>Para ejecular el cotizador, debés ejecutar desde consola <strong>inicarCotizacion()</strong></p>
+        
     </footer>
-    
+
+
+
 </body>
 
 </html>

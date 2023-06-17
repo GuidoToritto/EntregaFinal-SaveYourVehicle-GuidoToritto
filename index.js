@@ -5,60 +5,79 @@ const vehiculo = [
   { codigo: 4, tipo: 'Moto', factor: 0.05 }
 ];
 
+function cargarCodigo(select, array) {
+  const selectElement = document.getElementById(select);
 
+  if (array.length > 0) {
+    array.forEach(element => {
+      selectElement.innerHTML += `<option value="${element.codigo}">${element.tipo}</option>`;
+    });
+  }
+}
 
+cargarCodigo('vehiculoElegir', vehiculo);
 
-
-//Metodo constructor 
 class Cotizador {
   constructor(tipoVehiculo, valorFijo, factorAlarma, valorVehiculo) {
-    this.tipoVehiculo = tipoVehiculo
-    this.valorFijo = valorFijo
-    this.factorAlarma = factorAlarma
-    this.valorVehiculo = valorVehiculo
+    this.tipoVehiculo = tipoVehiculo;
+    this.valorFijo = valorFijo;
+    this.factorAlarma = factorAlarma;
+    this.valorVehiculo = valorVehiculo;
   }
   obtenerCotizacion() {
-    const cotizacion = this.valorVehiculo * this.tipoVehiculo.factor * this.valorFijo * this.factorAlarma
-    return cotizacion
+    const cotizacion = this.valorVehiculo * this.tipoVehiculo.factor * this.valorFijo * this.factorAlarma;
+    return cotizacion;
   }
 }
 
-const valorFijo = 0.2
-let tipoVehiculo = {}
-let valorVehiculo = 0
+const valorFijo = 0.2;
+let tipoVehiculo = {};
+let valorVehiculo = 0;
 let alarma = true;
-let factorAlarma = 0.1
+let factorAlarma = 0.1;
 
-
-
-
+const inputAlarma = document.getElementById('alarmaSi')
+const inputPrecio = document.getElementById("precioVehiculo")
+const btnCotizar = document.getElementById("btn-cotizar")
+const valorFinal = document.getElementById('valorFinal')
+const btnGuardar = document.querySelector('span.guardar')
 
 function iniciarCotizacion() {
-  let codigo = prompt("Ingresa el código númerico del vehiculo a cotizar: Código 1: Camioneta - Código 2: Camión - Código 3: Auto - Código 4: Moto")
-  tipoVehiculo = vehiculo.find((vehiculo) => vehiculo.codigo === parseInt(codigo))
+  const selectElement = document.getElementById('vehiculoElegir');
+  const codigoSeleccionado = parseInt(selectElement.value);
+  tipoVehiculo = vehiculo.find(vehiculo => vehiculo.codigo === codigoSeleccionado);
 
-  tipoVehiculo === undefined && alert("Error en el código ingresado")
-  
-  valorVehiculo = parseInt(prompt("Ingrese valor del auto: (min: 1.000.000 max: 10.000.000)"));
-  valorVehiculo <= 1000000 || valorVehiculo >= 10000000 && alert("Debes ingresar un valor entre 1.000.000 y 10.000.000 de pesos.")
+  if (tipoVehiculo === undefined) {
+    alert("Error en el código ingresado");
+    return;
+  }
+
+  valorVehiculo = parseFloat(inputPrecio.value);
+
+  if (valorVehiculo <= 1000000 || valorVehiculo >= 10000000) {
+    alert("Debes ingresar un valor entre 1.000.000 y 10.000.000 de pesos.");
+    return;
+  }
+
+  alarma = inputAlarma.checked;
+  factorAlarma = alarma ? 1 : 0.5;
+
+  const cotizarVehiculo = new Cotizador(tipoVehiculo, valorFijo, factorAlarma, valorVehiculo);
+  const valorSeguro = cotizarVehiculo.obtenerCotizacion();
 
 
-  alarma = confirm("Pulsa 'Aceptar' si tu vehiculo posee alarma. De lo contrario, pulsa 'Cancelar'")
-  factorAlarma = alarma ? 1 : 0.5
+  valorFinal.textContent = valorSeguro.toFixed(2);
 
+  btnGuardar.addEventListener('click', () => {
+    localStorage.setItem('Tipo de vehiculo', JSON.stringify(tipoVehiculo));
+    localStorage.setItem("Valor del vehiculo", valorVehiculo);
+    localStorage.setItem("valor del Seguro mensual", valorSeguro);
 
+    console.table(tipoVehiculo);
+    console.log("Valor del vehiculo: ", valorVehiculo);
+    console.log("Valor del seguro mensual: ", valorSeguro);
+  })
 
-  const cotizarVehiculo = new Cotizador(tipoVehiculo, valorFijo, factorAlarma, valorVehiculo)
-  let valorSeguro = cotizarVehiculo.obtenerCotizacion()
-  alert("El costo mensual del seguro es de $" + valorSeguro.toFixed(2))
-
-  localStorage.setItem('Tipo de vehiculo', JSON.stringify(tipoVehiculo))
-  localStorage.setItem("Valor del vehiculo", valorVehiculo)
-  localStorage.setItem("valor del Seguro mensual", valorSeguro)
-
-  console.table(tipoVehiculo)
-  console.log("Valor del vehiculo: ", valorVehiculo)
-  console.log("Valor del  seguro mensual: ", valorSeguro)
 }
 
-document.getElementById("btn-cotizar").addEventListener('click',iniciarCotizacion)
+btnCotizar.addEventListener('click', iniciarCotizacion);

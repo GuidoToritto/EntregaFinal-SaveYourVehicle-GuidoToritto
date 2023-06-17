@@ -1,63 +1,115 @@
-*{
-    margin: 0 auto;
-    padding: 2px;
-    margin-top: 5px;
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&display=swap");
 
-
+* {
+  margin: 0 auto;
+  padding: 2px;
 }
-body{
-    background-color: rgb(239, 248, 255); 
-    width: 400px;
-    color: rgb(73, 89, 112);
-}
-
-header{
-    text-align: center;
-    font-family: monospace;
-    font-size: 15px;
-    background-color: rgb(213, 232, 248);
-    border-radius: 10px;
-    
-}
-main{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
-    background-color: rgb(213, 232, 248);
-    font-weight: 700;
-    padding: 20px;
-    text-align: start;
-    text-align: center;
+body {
+  font-family: "Inconsolata", monospace;
+  width: 370px;
+  color: #87ceeb;
+  background-color: #663c8b;
+  
+  margin: 0 auto;
 }
 
-ol{
-    text-align: center;
-    list-style: none;
-    font-family: monospace;
-    font-size: x-large;
+main {
+  font-size: 15px;
+  padding-top: 10px;
+  border-style:double;
+  border-radius: 40px;
+  border-color: black;
+  border-width: 10px;
+  color: #663c8b;
+  background-color: #87ceeb;
+  text-align: center;
 }
 
-footer{
-    background-color: rgb(213, 232, 248);
-    border-radius: 10px;
-    padding: 5px;
-    font-size: x-large;
-    font-family: monospace;
-    text-align: center;
+
+button,
+.guardar {
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 20px;
+  color: #87ceeb;
+  background-color: #663c8b;
+  font-family: "Press Start 2P", cursive;
 }
 
-button{
-    background-color:aliceblue;
-    border-radius: 10px;
-    padding: 5px;
-    font-size: x-large;
-    font-family: monospace;
+header {
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 10px;
 }
 
-::placeholder{
-    background-color:aliceblue;
-    border-radius: 10px;
-    padding: 5px;
-    font-family: monospace;
+.title {
+  background-color: white;
+  color: #663c8b;
+  border-color: black;
+  border-width: 10px;
+  border-style: double;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 35px;
+}
+select,
+input {
+  margin-top: 10px;
+  min-width: 40%;
+  font-size: 15px;
+  border-radius: 10px;
+  padding: 5px;
+  color: #100d2c;
+  font-family: "Press Start 2P", cursive;
+}
+
+.alarm {
+  min-width: 20px;
+}
+
+label {
+  font-family: "Press Start 2P", cursive;
+}
+
+
+
+.separador {
+  margin: 20px;
+  font-size: 40px;
+}
+
+.importe {
+  margin-top: 30px;
+  font-size: 15px;
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+  font-weight: bolder;
+}
+
+.alarm {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.alarmBtn {
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+.vehicle,
+.type {
+  margin-top: 10px;
+}
+
+.radio-group {
+  display: flex;
+  margin-right: 20px;
+}
+
+input::placeholder {
+  color: #100d2c;
 }
