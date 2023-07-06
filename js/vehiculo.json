@@ -1,0 +1,7 @@
+[
+    { "codigo": 1, "tipo": "Camioneta", "factor": 0.2 },
+    { "codigo": 2, "tipo": "Camión", "factor": 0.3 },
+    { "codigo": 3, "tipo": "Auto", "factor": 0.1 },
+    { "codigo": 4, "tipo": "Moto", "factor": 0.05 }
+  ]
+  
